@@ -8,7 +8,7 @@
     <meta name="author" content="Creative Tim">
     <title>{{ config('app.name') }} | @yield('title')</title>
     <!-- Favicon -->
-    <link href="{{asset('img/brand/favicon.png')}}" rel="icon" type="image/png">
+    <link href="{{asset('img/brand/tarea.png')}}" rel="icon" type="image/png">
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
     <!-- Icons -->
