@@ -33,4 +33,4 @@ Route::delete('/tasks/{task}','TaskController@destroy')->name('tareas.destroy');
 Route::put('/status/{task}','TaskController@updateStatus')->name('tareas.status');
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
