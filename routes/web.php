@@ -35,3 +35,4 @@ Auth::routes();
 
 /**perfil de usuario */
 Route::get('/users/edit','UserController@edit')->name('perfil.edit');
+Route::put('/users/user','UserController@update')->name('perfil.update');

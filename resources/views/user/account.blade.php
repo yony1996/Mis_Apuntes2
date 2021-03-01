@@ -30,11 +30,11 @@
                             {{$user->name}}
                         </h5>
                         <div class="h5 font-weight-300">
-                            <i class="ni location_pin mr-2"></i>Cotopaxi , Ecuador
+                            <i class="ni location_pin mr-2"></i>{{$user->city}} , {{$user->country}}
                         </div>
 
                         <div>
-                            <i class="ni education_hat mr-2"></i>Universidad Técnica de Cotopaxi
+                            <i class="ni education_hat mr-2"></i>{{$user->university}}
                         </div>
                     </div>
                 </div>
@@ -51,8 +51,9 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form action="" method="POST" enctype="multipart/form-data">
+                    <form action="{{route('perfil.update')}}" method="POST" enctype="multipart/form-data">
                         @csrf
+                        @method('PUT')
                         <h6 class="heading-small text-muted mb-4">Información del Estudiante</h6>
                         <div class="pl-lg-4">
                             <div class="row">
@@ -91,7 +92,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label class="form-control-label" for="input-address">Universidad</label>
-                                        <input id="input-address" name="university" class="form-control" placeholder="Universidad" value="{{old('university')}}" type="text">
+                                        <input id="input-address" name="university" class="form-control" placeholder="Universidad" value="{{old('university',$user->university)}}" type="text">
                                         @error('university')
                                         <small class="text-danger">{{$message}}</small>
                                         @enderror
@@ -108,7 +109,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label class="form-control-label" for="input-address">Dirección</label>
-                                        <input id="input-address" name="direction" class="form-control" placeholder="Dirección domiciliar" type="text" value="{{old('description')}}">
+                                        <input id="input-address" name="direction" class="form-control" placeholder="Dirección domiciliar" type="text" value="{{old('direction',$user->direction)}}">
                                         @error('direction')
                                         <small class="text-danger">{{$message}}</small>
                                         @enderror
@@ -119,7 +120,7 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label class="form-control-label" for="input-city">Ciudad</label>
-                                        <input type="text" name="city" id="input-city" class="form-control" value="{{old('city')}}" placeholder="Ciudad">
+                                        <input type="text" name="city" id="input-city" class="form-control" value="{{old('city',$user->city)}}" placeholder="Ciudad">
                                         @error('city')
                                         <small class="text-danger">{{$message}}</small>
                                         @enderror
@@ -128,7 +129,7 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label class="form-control-label" for="input-country">Pais</label>
-                                        <input type="text" name="country" id="input-country" value="{{old('country')}}" class="form-control" placeholder="Pais">
+                                        <input type="text" name="country" id="input-country" value="{{old('country',$user->country)}}" class="form-control" placeholder="Pais">
                                         @error('country')
                                         <small class="text-danger">{{$message}}</small>
                                         @enderror
@@ -143,7 +144,7 @@
                         <div class="pl-lg-4">
                             <div class="form-group">
                                 <label class="form-control-label">Acerca de mi</label>
-                                <textarea name="about" rows="4" class="form-control" placeholder="Unas pocas palabras sobre mi...">{{old('about')}}</textarea>
+                                <textarea name="about" rows="4" class="form-control" placeholder="Unas pocas palabras sobre mi...">{{old('about',$user->about)}}</textarea>
                             </div>
                         </div>
                         <div class="form-group">
