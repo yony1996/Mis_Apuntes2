@@ -52,7 +52,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
                                 </div>
-                                <input name="date" class="form-control datepicker" placeholder="Selecione la fecha de entrega" type="text" required>
+                                <input name="date" class="form-control datepicker" placeholder="Selecione la fecha de entrega" autocomplete="off" required>
                             </div>
                         </div>
 
