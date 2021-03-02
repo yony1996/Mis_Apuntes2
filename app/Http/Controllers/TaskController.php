@@ -27,12 +27,14 @@ class TaskController extends Controller
         $id=Auth::user()->id;
         $user=User::find($id);
         $rol=$user->roles->implode('name',',');
+
         if($rol=='admin'){
             $tasks=Task::paginate(5);
             return view('home',compact('tasks'));
         }
+
         $tasks=Task::where('user_id','=',$id)->orWhereNull('id')->paginate(5);
-        //dd($tasks);
+       
         return view('home',compact('tasks'));
     }
 
