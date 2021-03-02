@@ -11,6 +11,19 @@ use File;
 use Illuminate\Validation\Rule;
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        //$this->middleware('can:admin index')->only('index');
+        $this->middleware('can:perfil edit')->only('edit','update');
+    }
+    public function index()
+    {
+        $id=Auth::user()->id;
+        $users=User::where('id','!=',$id)->orWhereNull('id')->get();
+        return view('admin.index',compact('users'));
+    }
+
     public function edit()
     {
          

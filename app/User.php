@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Traits\HasRoles;
 use App\Course;
 use App\Task;
 
@@ -12,6 +13,7 @@ use App\Task;
 class User extends Authenticatable
 {
     use Notifiable;
+    use HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -40,10 +42,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function  course(){
-        return $this->belongsTo(Course::class,'id_course');
-    }
+    
     public function  task(){
-        return $this->belongsTo(Task::class,'id_task');
+        return $this->hasMany(Task::class);
+    }
+    public function  course(){
+        return $this->hasMany(Course::class);
     }
 }

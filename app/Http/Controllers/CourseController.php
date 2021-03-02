@@ -4,15 +4,22 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Course;
+use Auth;
 class CourseController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('can:asignatura')->only('index');
+        $this->middleware('can:asignatura create')->only('create','store');
+        $this->middleware('can:asignatura edit')->only('edit','update');
+        $this->middleware('can:asignatura delete')->only('destroy');
+        
     }
     public function index()
     {
-        $courses=Course::all();
+        $id=Auth::user()->id;
+        $courses=Course::where('user_id','=',$id)->orWhereNull('id')->paginate(5);
         return  view('course.index',compact('courses'));
     }
 
@@ -40,7 +47,7 @@ class CourseController extends Controller
         $courses->name= $request->input('name');
         $courses->teacher=$request->input('teacher');
         $courses->description=$request->input('description');
-       // $courses->user_id=$request->input('user_id');
+        $courses->user_id=$request->input('user_id');
         $courses->save();
         $notification='La asignatura se a creado satisfactoriamente';
 
@@ -58,7 +65,7 @@ class CourseController extends Controller
         $course->name= $request->input('name');
         $course->teacher=$request->input('teacher');
         $course->description=$request->input('description');
-       // $course->user_id=$request->input('user_id');
+        $course->user_id=$request->input('user_id');
         $course->save();
         
         $notification = 'La asignatura se ha editado correctamente';

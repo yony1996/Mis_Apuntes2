@@ -13,7 +13,7 @@
                     <div class="col-lg-3 order-lg-2">
                         <div class="card-profile-image">
                             <a href="#">
-                                <img id="uploadPreview1" src="{{asset('img/theme/')}}" onerror=this.src="{{asset('img/theme/team-op1.jpg')}}" class="rounded-circle">
+                                <img id="uploadPreview1" src="{{asset($user->file)}}" onerror=this.src="{{asset('img/theme/team-op1.jpg')}}" class="rounded-circle">
                             </a>
                         </div>
                     </div>
@@ -147,9 +147,12 @@
                                 <textarea name="about" rows="4" class="form-control" placeholder="Unas pocas palabras sobre mi...">{{old('about',$user->about)}}</textarea>
                             </div>
                         </div>
+                        @can('perfil edit')
                         <div class="form-group">
                             <button class="btn btn-primary" type="submit">Actualizar Informacion</button>
                         </div>
+                        @endcan
+                        
                     </form>
                 </div>
             </div>

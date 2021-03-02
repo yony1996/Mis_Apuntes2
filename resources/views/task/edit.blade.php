@@ -19,8 +19,7 @@
                     <form action="{{route('tareas.update',$task->id)}}" method="POST">
                         @csrf
                         @method('PUT')
-                        {{--<input type="hidden" name="user_id" id="user_id" value="{{Auth::user()->id}}">--}}
-
+                        <input type="hidden" name="user_id" id="user_id" value="{{Auth::user()->id}}">
                         <div class="form-group">
                             <label for="course">Asignatura</label>
                             <select name="course" id="course" class="form-control">
@@ -53,10 +52,12 @@
                                 <input name="date" class="form-control datepicker" value="{{old('date',$task->delivery_date)}}" placeholder="Selecione la fecha de entrega" type="text" required>
                             </div>
                         </div>
-
+                        @can('tareas edit')
                         <div class="form-group">
                             <button class="btn btn-primary" type="submit">Actualizar Tarea</button>
                         </div>
+                        @endcan
+                        
 
                     </form>
                 </div>

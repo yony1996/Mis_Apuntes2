@@ -20,7 +20,7 @@
 
                     <form action="{{route('tareas.store')}}" method="POST">
                         @csrf
-                        {{--<input type="hidden" name="user_id" id="user_id" value="{{Auth::user()->id}}">--}}
+                        <input type="hidden" name="user_id" id="user_id" value="{{Auth::user()->id}}">
 
                         <div class="form-group">
                             <label for="course">Asignatura</label>
@@ -55,10 +55,12 @@
                                 <input name="date" class="form-control datepicker" placeholder="Selecione la fecha de entrega" autocomplete="off" required>
                             </div>
                         </div>
-
+                        @can('tareas create')
                         <div class="form-group">
                             <button class="btn btn-primary" type="submit">Crear Tarea</button>
                         </div>
+                        @endcan
+                        
 
                     </form>
                 </div>

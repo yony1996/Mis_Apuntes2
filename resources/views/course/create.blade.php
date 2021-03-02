@@ -17,7 +17,7 @@
 
                     <form action="{{route('asignatura.store')}}" method="POST">
                         @csrf
-                        {{--<input type="hidden" name="user_id" id="user_id" value="{{Auth::user()->id}}">--}}
+                        <input type="hidden" name="user_id" id="user_id" value="{{Auth::user()->id}}">
                         <div class="form-group">
                             <label for="name">Nombre de la asignatura</label>
                             <input class="form-control" type="text" name="name" id="name" value="{{old('name')}}" placeholder="nombre de la asignatura" required>
@@ -43,9 +43,12 @@
                             <small class="text-danger">{{$message}}</small>
                             @enderror
                         </div>
+                        @can('asignatura create')
                         <div class="form-group">
                             <button class="btn btn-primary" type="submit">Crear</button>
                         </div>
+                        @endcan
+                        
 
                     </form>
                 </div>

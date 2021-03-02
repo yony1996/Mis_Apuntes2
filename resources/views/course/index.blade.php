@@ -20,8 +20,11 @@
 
                 </a> &nbsp
                 <a>Asignaturas</a>&nbsp
-                <a href="{{route('asignatura.create')}}" class="btn btn-sm btn-primary"><i class="fas fa-plus"></i>
+                @can('asignatura create')
+                     <a href="{{route('asignatura.create')}}" class="btn btn-sm btn-primary"><i class="fas fa-plus"></i>
                     Crear Asignatura</a>
+                @endcan
+               
 
 
             </div>
@@ -36,7 +39,10 @@
                             <th>nombre</th>
                             <th>profesor</th>
                             <th>descripcion</th>
+                            @can('asignatura destroy')
                             <th>Accion</th>
+                            @endcan
+                            
 
                         </tr>
                     </thead>
@@ -48,7 +54,8 @@
                             <td>{{$course->name}}</td>
                             <td>{{$course->teacher}}</td>
                             <td>{{$course->description}}</td>
-                            <td>
+                            @can('asignatura destroy')
+                                <td>
 
                                 <form action="{{route('asignatura.destroy', $course->id)}}" method="POST">
                                     @csrf
@@ -59,6 +66,8 @@
                                 </form>
 
                             </td>
+                            @endcan
+                            
 
                         </tr>
                         @endforeach
@@ -72,11 +81,12 @@
                 </div>
 
                 @endif
-
+                
             </div>
             <!-- /.card-body -->
         </div>
         <!-- /.card -->
     </div>
+    <div class="card-body">{{$courses->links()}}</div>
 </div>
 @endsection

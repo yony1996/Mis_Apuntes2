@@ -18,7 +18,7 @@
                     <form action="{{route('asignatura.update',$course->id)}}" method="POST">
                         @csrf
                         @method('PUT')
-                        {{--<input type="hidden" name="user_id" id="user_id" value="{{$course->user_id}}">--}}
+                        <input type="hidden" name="user_id" id="user_id" value="{{$course->user_id}}">
                         <div class="form-group">
                             <label for="name">Nombre</label>
                             <input class="form-control" type="text" name="name" id="name" value="{{old('name',$course->name)}}" placeholder="nombre de la asignatura" required>
@@ -44,9 +44,12 @@
                             <small class="text-danger">{{$message}}</small>
                             @enderror
                         </div>
+                        @can('asignatura edit')
                         <div class="form-group">
                             <button class="btn btn-primary" type="submit">Editar Asignatura</button>
                         </div>
+                        @endcan
+                        
 
                     </form>
                 </div>

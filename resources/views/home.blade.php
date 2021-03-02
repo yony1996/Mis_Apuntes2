@@ -17,11 +17,17 @@
 
         </div>
         <div class="card">
+        @can('tareas')
             <div class="card-header">
                 Tareas
-                <a href="{{route('tareas.create')}}" class="btn btn-sm btn-primary ml-4"><i class="fas fa-plus"></i>
-                    Crear tarea</a>
+                @can('tareas create')
+                   <a href="{{route('tareas.create')}}" class="btn btn-sm btn-primary ml-4"><i class="fas fa-plus"></i>
+                    Crear tarea</a> 
+                @endcan
+                
             </div>
+        @endcan
+            
             <div class="container">
                 <div class="row mb-4">
                     @if(count($tasks)>=1)
@@ -36,8 +42,8 @@
                             <div class="card-text">
                                 <p style="font-size: 15px">{{$task->description}}</p>
                             </div>
-
-                            <div class="container offset">
+                            @can('tareas destroy')
+                                <div class="container offset">
                                 <div class="row">
                                     <div class="col">
                                         <form action="{{route('tareas.destroy', $task->id)}}" method="POST">
@@ -57,6 +63,8 @@
                                 </div>
 
                             </div>
+                            @endcan
+                            
 
 
                         </div>
@@ -72,8 +80,8 @@
                             <div class="card-text">
                                 <p style="font-size: 15px">{{$task->description}}</p>
                             </div>
-
-                            <div class="container offset">
+                            @can('tareas destroy')
+                                <div class="container offset">
                                 <div class="row">
                                     <div class="col">
                                         <form action="{{route('tareas.destroy', $task->id)}}" method="POST">
@@ -88,6 +96,8 @@
                                 </div>
 
                             </div>
+                            @endcan
+                            
 
 
                         </div>
@@ -111,6 +121,7 @@
 
         </div>
     </div>
+    <div class="card-body">{{$tasks->links()}}</div>
 </div>
 
 

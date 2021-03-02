@@ -36,6 +36,14 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <div class="media align-items-center">
+                            <span class="avatar avatar-sm rounded-circle">
+                                @if (Auth::user()->file==null || Auth::user()->file=="#")
+                                <img src="{{asset('img/theme/team-op1.jpg')}}">
+                                @else
+                                <img src="{{asset(Auth::user()->file)}}">
+                                @endif
+
+                            </span>
                             <span class="mb-0 text-sm  font-weight-bold">{{Auth::user()->name}}</span>
                         </div>
                     </a>
@@ -79,7 +87,13 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <div class="media align-items-center">
-
+                                <span class="avatar avatar-sm rounded-circle">
+                                    @if (Auth::user()->file==null || Auth::user()->file=="#")
+                                    <img src="{{asset('img/theme/team-op1.jpg')}}">
+                                    @else
+                                    <img src="{{asset(Auth::user()->file)}}">
+                                    @endif
+                                </span>
                                 <div class="media-body ml-2 d-none d-lg-block">
                                     <span class="mb-0 text-sm  font-weight-bold">{{Auth::user()->name}}</span>
                                 </div>
