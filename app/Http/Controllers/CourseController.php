@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Course;
 use Auth;
+use App\User;
 class CourseController extends Controller
 {
     public function __construct()
@@ -18,7 +19,14 @@ class CourseController extends Controller
     }
     public function index()
     {
+        
         $id=Auth::user()->id;
+        $user=User::find($id);
+        $rol=$user->roles->implode('name',',');
+        if($rol=='admin'){
+            $courses=Course::paginate(5);
+            return view('course.index',compact('courses'));
+        }
         $courses=Course::where('user_id','=',$id)->orWhereNull('id')->paginate(5);
         return  view('course.index',compact('courses'));
     }

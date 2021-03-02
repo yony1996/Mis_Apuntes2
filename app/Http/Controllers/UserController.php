@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Task;
 use Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -21,6 +22,7 @@ class UserController extends Controller
     {
         $id=Auth::user()->id;
         $users=User::where('id','!=',$id)->orWhereNull('id')->get();
+        
         return view('admin.index',compact('users'));
     }
 
